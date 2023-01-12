@@ -1,0 +1,38 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- task: UseDotNet@2
+  displayName: 'Installing .Net6'
+  inputs:
+    version: '6.x'
+
+- task: DotNetCoreCLI@
+  displayName: 'Building App'
+  inputs:
+    command: 'build'
+- task: DotNetCoreCLI@2
+  displayName: 'Testing App'
+  inputs:
+    command: 'test'
+    testRunTitle: 'Testing'
+
+- task: DotNetCoreCLI@2
+  displayName: 'packaging'
+  inputs:
+    command: 'pack'
+    packagesToPack: '**/*.csproj'
+    versioningScheme: 'off'
+
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'publish'
+    publishWebProjects: false
