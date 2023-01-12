@@ -32,16 +32,32 @@ steps:
     packagesToPack: '**/*.csproj'
     versioningScheme: 'off'
 
-- task: DotNetCoreCLI@2
-  displayName: 'publishing'
-  inputs:
-    command: 'publish'
-    publishWebProjects: false
-    arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
-    zipAfterPublish: True
+-  task: ArchiveFiles@2
+   displayName: 'Archive files'
+   inputs:
+      rootFolderOrFile: '$(System.DefaultWorkingDirectory)/dist/'
+      includeRootFolder: false
+      archiveType: zip
+      archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
+      replaceExistingArchive: false
+      
+-  task: PublishBuildArtifacts@1
+   inputs:
+     PathtoPublish: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+     ArtifactName: 'ACsharp-Zip'
+     publishLocation: 'Container'
 
-- task: PublishPipelineArtifact@1
-  displayName: 'Pushing out'
-  inputs:
-    targetPath: '$(Build.ArtifactStagingDirectory)' 
-    artifactName: 'CSharp-Build'
+
+# - task: DotNetCoreCLI@2
+#   displayName: 'publishing'
+#   inputs:
+#    command: 'publish'
+#    publishWebProjects: false
+#    arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+#    zipAfterPublish: True
+
+# - task: PublishPipelineArtifact@1
+#   displayName: 'Pushing out'
+#   inputs:
+#    targetPath: '$(Build.ArtifactStagingDirectory)' 
+#    artifactName: 'CSharp-Build'
