@@ -1,0 +1,15 @@
+C:\Users\vakash\OneDrive - Deloitte (O365D)\Documents\Wood Duck 2.0 End 2 End Files\New-CS\New-CS\bin\Debug\net6.0\New-CS.exe
+C:\Users\vakash\OneDrive - Deloitte (O365D)\Documents\Wood Duck 2.0 End 2 End Files\New-CS\New-CS\bin\Debug\net6.0\New-CS.deps.json
+C:\Users\vakash\OneDrive - Deloitte (O365D)\Documents\Wood Duck 2.0 End 2 End Files\New-CS\New-CS\bin\Debug\net6.0\New-CS.runtimeconfig.json
+C:\Users\vakash\OneDrive - Deloitte (O365D)\Documents\Wood Duck 2.0 End 2 End Files\New-CS\New-CS\bin\Debug\net6.0\New-CS.dll
+C:\Users\vakash\OneDrive - Deloitte (O365D)\Documents\Wood Duck 2.0 End 2 End Files\New-CS\New-CS\bin\Debug\net6.0\New-CS.pdb
+C:\Users\vakash\OneDrive - Deloitte (O365D)\Documents\Wood Duck 2.0 End 2 End Files\New-CS\New-CS\obj\Debug\net6.0\New-CS.csproj.AssemblyReference.cache
+C:\Users\vakash\OneDrive - Deloitte (O365D)\Documents\Wood Duck 2.0 End 2 End Files\New-CS\New-CS\obj\Debug\net6.0\New-CS.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\vakash\OneDrive - Deloitte (O365D)\Documents\Wood Duck 2.0 End 2 End Files\New-CS\New-CS\obj\Debug\net6.0\New-CS.AssemblyInfoInputs.cache
+C:\Users\vakash\OneDrive - Deloitte (O365D)\Documents\Wood Duck 2.0 End 2 End Files\New-CS\New-CS\obj\Debug\net6.0\New-CS.AssemblyInfo.cs
+C:\Users\vakash\OneDrive - Deloitte (O365D)\Documents\Wood Duck 2.0 End 2 End Files\New-CS\New-CS\obj\Debug\net6.0\New-CS.csproj.CoreCompileInputs.cache
+C:\Users\vakash\OneDrive - Deloitte (O365D)\Documents\Wood Duck 2.0 End 2 End Files\New-CS\New-CS\obj\Debug\net6.0\New-CS.dll
+C:\Users\vakash\OneDrive - Deloitte (O365D)\Documents\Wood Duck 2.0 End 2 End Files\New-CS\New-CS\obj\Debug\net6.0\refint\New-CS.dll
+C:\Users\vakash\OneDrive - Deloitte (O365D)\Documents\Wood Duck 2.0 End 2 End Files\New-CS\New-CS\obj\Debug\net6.0\New-CS.pdb
+C:\Users\vakash\OneDrive - Deloitte (O365D)\Documents\Wood Duck 2.0 End 2 End Files\New-CS\New-CS\obj\Debug\net6.0\New-CS.genruntimeconfig.cache
+C:\Users\vakash\OneDrive - Deloitte (O365D)\Documents\Wood Duck 2.0 End 2 End Files\New-CS\New-CS\obj\Debug\net6.0\ref\New-CS.dll
