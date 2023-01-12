@@ -9,6 +9,10 @@ trigger:
 pool:
   vmImage: windows-latest
 
+variables:
+ buildConfiguration: 'Release'
+
+
 steps:
 - task: UseDotNet@2
   displayName: 'Installing .Net6'
@@ -30,31 +34,34 @@ steps:
   inputs:
     command: 'pack'
     packagesToPack: '**/*.csproj'
+    configurationToPack: $(BuildConfiguration)
+    outputDir: $(Build.ArtifactStagingDirectory)
     versioningScheme: 'off'
 
--  task: ArchiveFiles@2
-   displayName: 'Archive files'
-   inputs:
-      rootFolderOrFile: '$(System.DefaultWorkingDirectory)/dist/'
-      includeRootFolder: false
-      archiveType: zip
-      archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
-      replaceExistingArchive: false
-      
--  task: PublishBuildArtifacts@1
-   inputs:
-     PathtoPublish: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
-     ArtifactName: 'ACsharp-Zip'
-     publishLocation: 'Container'
-
-
-# - task: DotNetCoreCLI@2
-#   displayName: 'publishing'
+# -  task: ArchiveFiles@2
+#    displayName: 'Archive files'
 #   inputs:
-#    command: 'publish'
-#    publishWebProjects: false
-#    arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
-#    zipAfterPublish: True
+#      rootFolderOrFile: '$(System.DefaultWorkingDirectory)/dist/'
+#      includeRootFolder: false
+#      archiveType: zip
+#      archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
+#      replaceExistingArchive: false
+      
+# -  task: PublishBuildArtifacts@1
+#    inputs:
+#     PathtoPublish: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+#     ArtifactName: 'ACsharp-Zip'
+#     publishLocation: 'Container'
+
+
+- task: DotNetCoreCLI@2
+  displayName: 'publishing'
+  inputs:
+    command: 'publish'
+    projects: '**/*.csproj'
+    publishWebProjects: false
+    arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+    zipAfterPublish: true
 
 # - task: PublishPipelineArtifact@1
 #   displayName: 'Pushing out'
