@@ -63,6 +63,13 @@ steps:
     arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
     zipAfterPublish: true
 
+- task: PublishBuildArtifacts@1
+  displayName: 'push to pipeline'
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+    ArtifactName: 'Csharp-Zip'
+    publishLocation: 'Container'
+
 # - task: PublishPipelineArtifact@1
 #   displayName: 'Pushing out'
 #   inputs:
