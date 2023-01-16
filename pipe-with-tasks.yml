@@ -1,7 +1,4 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
+name: CSharp Build $(Date:yyyyMMdd) $(Rev:r)
 
 trigger:
 - dev
@@ -9,34 +6,29 @@ trigger:
 pool:
   vmImage: windows-latest
 
-variables:
- buildConfiguration: 'Release'
-
-
 steps:
 - task: UseDotNet@2
   displayName: 'Installing .Net6'
   inputs:
     version: '6.x'
-
 - task: DotNetCoreCLI@2
-  displayName: 'Building App'
+  displayName: 'Build'
   inputs:
     command: 'build'
 - task: DotNetCoreCLI@2
-  displayName: 'Testing App'
+  displayName: 'Unit Test'
   inputs:
     command: 'test'
-    testRunTitle: 'Testing'
+    
 
-- task: DotNetCoreCLI@2
-  displayName: 'packaging'
-  inputs:
-    command: 'pack'
-    packagesToPack: '**/*.csproj'
-    configurationToPack: $(BuildConfiguration)
-    outputDir: $(Build.ArtifactStagingDirectory)
-    versioningScheme: 'off'
+#- task: DotNetCoreCLI@2
+#  displayName: 'packaging'
+#  inputs:
+#    command: 'pack'
+#    packagesToPack: '**/*.csproj'
+#    configurationToPack: $(BuildConfiguration)
+#    outputDir: $(Build.ArtifactStagingDirectory)
+#    versioningScheme: 'off'
 
 # -  task: ArchiveFiles@2
 #    displayName: 'Archive files'
@@ -55,13 +47,14 @@ steps:
 
 
 - task: DotNetCoreCLI@2
-  displayName: 'publishing'
+  displayName: 'Publish'
   inputs:
     command: 'publish'
     projects: '**/*.csproj'
     publishWebProjects: false
     arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
     zipAfterPublish: true
+    versioningScheme: 'on'
 
 - task: PublishBuildArtifacts@1
   displayName: 'push to pipeline'
@@ -69,6 +62,17 @@ steps:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
     ArtifactName: 'Csharp-Zip'
     publishLocation: 'Container'
+
+#- task: S3Upload@1
+#  inputs:
+#    awsCredentials: 'AWS-GPWD-Connection'
+#    regionName: 'ap-south-1'
+#    bucketName: 'azure-gp-csharp-dev'
+#    sourceFolder: 
+#    globExpressions: '**'
+#    createBucket: true
+
+
 
 # - task: PublishPipelineArtifact@1
 #   displayName: 'Pushing out'
