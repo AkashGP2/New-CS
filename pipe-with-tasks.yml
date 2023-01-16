@@ -58,7 +58,7 @@ stages:
           awsCredentials: 'AWS-GP-Csharp-Deploy'
           regionName: 'ap-south-1'
           bucketName: 'azure-new-csharp'
-          sourceFolder: $(System.ArtifactsDirectory)
+          sourceFolder: '$(System.ArtifactsDirectory)/Csharp-New-Zip/New-CS.zip'
           globExpressions: '**'
           createBucket: true
 
