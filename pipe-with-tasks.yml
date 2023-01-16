@@ -55,7 +55,7 @@ stages:
       - task: S3Upload@1
         displayName: Upload to S3
         inputs:
-          awsCredentials: 'AWS-GPWD-Connection'
+          awsCredentials: 'AWS-GP-Csharp-Deploy'
           regionName: 'ap-south-1'
           bucketName: 'azure-new-csharp'
           sourceFolder: $(System.ArtifactsDirectory)
