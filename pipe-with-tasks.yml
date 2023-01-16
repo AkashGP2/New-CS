@@ -10,7 +10,8 @@ stages:
 -  stage: Build
    displayName: Build Stage
    jobs:
-   - steps:
+   -  job: Build Job
+      steps:
       - task: UseDotNet@2
         displayName: 'Installing .Net6'
         inputs:
@@ -42,7 +43,8 @@ stages:
 -  stage: Deploy
    displayName: Download and Deploy
    jobs:
-   -  steps:
+   -  job: Deploy Job
+      steps:
       - task: DownloadBuildArtifacts@0
         displayName: Download the Zip
         inputs:
