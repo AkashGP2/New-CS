@@ -1,0 +1,28 @@
+name: C Sharp Dev Build and Package pipeline
+
+variables:
+  dir: 'cd root-path/main'
+  file: 'csharp.zip'
+
+trigger: 
+-  env1
+-  env2
+
+stages:
+- stage: Build and Test
+  jobs:
+    - job: Set up Runtime
+      pool: 
+      steps:
+        -  task:
+
+        -  task:
+
+        -  script: ./a.out
+    
+    - job: Check
+      pool: 
+      steps:
+      -  script: ls
+
+- stage: Deploy

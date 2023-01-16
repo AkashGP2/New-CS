@@ -9,54 +9,56 @@ pool:
 stages:
 -  stage: Build
    displayName: Build Stage
-   steps:
-    - task: UseDotNet@2
-      displayName: 'Installing .Net6'
-      inputs:
-        version: '6.x'
-    - task: DotNetCoreCLI@2
-      displayName: 'Build'
-      inputs:
-        command: 'build'
-    - task: DotNetCoreCLI@2
-      displayName: 'Unit Test'
-      inputs:
-        command: 'test'
-    - task: DotNetCoreCLI@2
-      displayName: 'Publish'
-      inputs:
-        command: 'publish'
-        projects: '**/*.csproj'
-        publishWebProjects: false
-        arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
-        zipAfterPublish: true
-        versioningScheme: 'on'
-
-    - task: PublishBuildArtifacts@1
-      displayName: 'push to pipeline'
-      inputs:
-        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-        ArtifactName: 'Csharp-New-Zip'
-        publishLocation: 'Container'
+   Jobs:
+   - steps:
+      - task: UseDotNet@2
+        displayName: 'Installing .Net6'
+        inputs:
+          version: '6.x'
+      - task: DotNetCoreCLI@2
+        displayName: 'Build'
+        inputs:
+          command: 'build'
+      - task: DotNetCoreCLI@2
+        displayName: 'Unit Test'
+        inputs:
+          command: 'test'
+      - task: DotNetCoreCLI@2
+        displayName: 'Publish'
+        inputs:
+          command: 'publish'
+          projects: '**/*.csproj'
+          publishWebProjects: false
+          arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+          zipAfterPublish: true
+          versioningScheme: 'on'
+      - task: PublishBuildArtifacts@1
+        displayName: 'push to pipeline'
+        inputs:
+          PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+          ArtifactName: 'Csharp-New-Zip'
+          publishLocation: 'Container'
 
 -  stage: Deploy
-   steps:
-   - task: DownloadBuildArtifacts@0
-     displayName: Download the Zip
-     inputs:
-      buildType: current
-      downloadType: single
-      artifactName: 'Csharp-New-Zip'
-      downloadPath: $(System.ArtifactsDirectory)
-   - task: S3Upload@1
-     displayName: Upload to S3
-     inputs:
-      awsCredentials: 'AWS-GPWD-Connection'
-      regionName: 'ap-south-1'
-      bucketName: 'azure-new-csharp'
-      sourceFolder: $(System.ArtifactsDirectory)
-      globExpressions: '**'
-      createBucket: true
+   displayName: Download and Deploy
+   jobs:
+   -  steps:
+      - task: DownloadBuildArtifacts@0
+        displayName: Download the Zip
+        inputs:
+          buildType: current
+          downloadType: single
+          artifactName: 'Csharp-New-Zip'
+          downloadPath: $(System.ArtifactsDirectory)
+      - task: S3Upload@1
+        displayName: Upload to S3
+        inputs:
+          awsCredentials: 'AWS-GPWD-Connection'
+          regionName: 'ap-south-1'
+          bucketName: 'azure-new-csharp'
+          sourceFolder: $(System.ArtifactsDirectory)
+          globExpressions: '**'
+          createBucket: true
 
 
 
