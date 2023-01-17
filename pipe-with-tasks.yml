@@ -52,15 +52,22 @@ stages:
           downloadType: single
           artifactName: 'Csharp-New-Zip'
           downloadPath: $(System.ArtifactsDirectory)
-      - task: S3Upload@1
-        displayName: Upload to S3
+      - task: LambdaNETCoreDeploy@1
         inputs:
           awsCredentials: 'AWS-GP-Csharp-Deploy'
           regionName: 'ap-south-1'
-          bucketName: 'azure-new-csharp'
-          sourceFolder: '$(System.ArtifactsDirectory)/Csharp-New-Zip/New-CS.zip'
-          globExpressions: '**'
-          createBucket: true
+          command: 'deployFunction'
+          packageOnly: false
+          functionName: 
+#      - task: S3Upload@1
+#        displayName: Upload to S3
+#        inputs:
+#          awsCredentials: 'AWS-GP-Csharp-Deploy'
+#          regionName: 'ap-south-1'
+#          bucketName: 'azure-new-csharp'
+#          sourceFolder: '$(System.ArtifactsDirectory)/Csharp-New-Zip/New-CS.zip'
+#          globExpressions: '**'
+#         createBucket: true
 
 
 
