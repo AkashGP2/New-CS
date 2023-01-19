@@ -47,7 +47,7 @@ steps:
     regionName: 'ap-south-1'
     functionName: DemoCsharpDeploy
     codeLocation: 'localfile'
-    localZipFile: '$(Build.ArtifactStagingDirectory)/Csharp-New-Zip/New-CS.zip'
+    localZipFile: '$(Build.ArtifactStagingDirectory)/Csharp-New-Zip'
 #    localZipFile: 'New-CS/bin/Debug/net6.0/New-CS.dll'
 # - task: LambdaDeployFunction@1
 #   displayName: 'Deploy Lambda Function'
