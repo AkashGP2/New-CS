@@ -27,7 +27,7 @@ stages:
 
 - stage: Deploy
   jobs:
-  - job:Deploy to Lambda
+  - job: Deploy to Lambda
     steps:
       - task: LambdaNETCoreDeploy@1
         inputs:
