@@ -40,12 +40,34 @@ steps:
     downloadType: 'single'
     artifactName: 'Csharp-New-Zip'
     downloadPath: '$(System.ArtifactsDirectory)'
-- task: LambdaNETCoreDeploy@1
+- task: AmazonWebServices.aws-vsts-tools.LambdaDeployFunction.LambdaDeployFunction@1
+  displayName: 'Deploy Lambda Function: DemoCsharpDeploy'
   inputs:
     awsCredentials: 'AWS-GP-Csharp-Deploy'
     regionName: 'ap-south-1'
-    command: 'deployFunction'
-    packageOnly: false
-    functionName: 'DemoCsharpDeploy'
-    localZipFile: '$(System.ArtifactsDirectory)/Csharp-New-Zip/'
+    functionName: DemoCsharpDeploy
+    codeLocation: 'localfile'
+    localZipFile: '$(Build.ArtifactStagingDirectory)/Csharp-New-Zip'
+#    localZipFile: 'New-CS/bin/Debug/net6.0/New-CS.dll'
+# - task: LambdaDeployFunction@1
+#   displayName: 'Deploy Lambda Function'
+#   inputs:
+#     awsCredentials: 'AWS-GP-Csharp-Deploy'
+#     regionName: 'ap-south-1'
+#     deploymentMode: 'codeandconfiguration'
+#     functionName: 'DemoCsharpDeploy'
+#     description: 'From AzureDevops'
+# #    functionHandler: 'awsLambdaCICDPipeline::awsLambdaCICDPipeline.Function::FunctionHandler'
+# #    runtime: 'dotnetcore2.1'
+#     codeLocation: 'localfile'
+#     localZipFile: '$(Build.ArtifactStagingDirectory)/drop/awsLambdaCICDPipeline.zip'
+#     roleARN: '$(AWS-Lambda-ARN)'
+# - task: LambdaNETCoreDeploy@1
+#   inputs:
+#     awsCredentials: 'AWS-GP-Csharp-Deploy'
+#     regionName: 'ap-south-1'
+#     command: 'deployFunction'
+#     packageOnly: false
+#     functionName: 'DemoCsharpDeploy'
+#     localZipFile: '$(System.ArtifactsDirectory)/Csharp-New-Zip/'
  
