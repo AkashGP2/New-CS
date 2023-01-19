@@ -34,6 +34,12 @@ steps:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
     ArtifactName: 'Csharp-New-Zip'
     publishLocation: 'Container'
+- task: DownloadBuildArtifacts@0
+  inputs:
+    buildType: 'current'
+    downloadType: 'single'
+    artifactName: 'Csharp-New-Zip'
+    downloadPath: '$(System.ArtifactsDirectory)'
 - task: LambdaNETCoreDeploy@1
   inputs:
     awsCredentials: 'AWS-GP-Csharp-Deploy'
