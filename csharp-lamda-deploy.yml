@@ -1,0 +1,10 @@
+name: Csharp Deploy To Lambda $(Date:yyyyMMdd) $(Rev:r)
+
+trigger:
+- dev
+
+pool: 
+ vmImage: windows-latest
+
+
+ 

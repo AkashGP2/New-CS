@@ -26,3 +26,14 @@ stages:
       -  script: ls
 
 - stage: Deploy
+  jobs:
+  - job:Deploy to Lambda
+    steps:
+      - task: LambdaNETCoreDeploy@1
+        inputs:
+          awsCredentials: 'AWS-GP-Csharp-Deploy'
+          regionName: 'ap-south-1'
+          command: 'deployFunction'
+          packageOnly: false
+          functionName: 'DemoCsharpDeploy'
+          codeLocation:
