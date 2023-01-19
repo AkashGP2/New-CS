@@ -41,4 +41,5 @@ steps:
     command: 'deployFunction'
     packageOnly: false
     functionName: 'DemoCsharpDeploy'
+    localZipFile: '$(Build.ArtifactStagingDirectory)/Csharp-New-Zip/'
  

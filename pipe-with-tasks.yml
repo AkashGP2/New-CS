@@ -1,7 +1,7 @@
 name: CSharp Build and Artifact Collection $(Date:yyyyMMdd) $(Rev:r)
 
 trigger:
-- dev
+- none
 
 pool:
   vmImage: windows-latest
